@@ -16,10 +16,10 @@ RSpec.describe TeamUsersController, type: :controller do
       before(:each) do
         @team = create(:team, user: @current_user)
         @guest_user = create(:user)
+        post :create, params: { team_user: { email: @guest_user.email, team_id: @team.id } }
       end
 
       it "returns http success" do
-        post :create, params: { team_user: { user_id: @guest_user.id, team_id: @team.id } }
         expect(response).to have_http_status(:success)
       end
     end
@@ -31,7 +31,6 @@ RSpec.describe TeamUsersController, type: :controller do
       end
 
       it "returns http forbidden" do
-        post :create, params: { team_user: { user_id: @guest_user.id, team_id: @team.id } }
         expect(response).to have_http_status(:forbidden)
       end
     end
