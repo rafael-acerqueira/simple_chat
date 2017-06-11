@@ -22,8 +22,8 @@ RSpec.describe TalksController, type: :controller do
         @team.users << @guest_user
         @talk = create(:talk, user_one: @current_user, user_two: @guest_user, team: @team)
 
-        @message1 = create(:message)
-        @message2 = create(:message)
+        @message1 = create(:message, messagable: @talk)
+        @message2 = create(:message, messagable: @talk)
         @talk.messages << [@message1, @message2]
 
         get :show, params: {id: @guest_user, team_id: @team.id}
