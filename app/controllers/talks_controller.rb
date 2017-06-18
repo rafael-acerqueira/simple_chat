@@ -18,4 +18,5 @@ class TalksController < ApplicationController
         @talk = Talk.create(user_one: current_user, user_two: @user, team: @team)
       end
     end
+  end  
 end
