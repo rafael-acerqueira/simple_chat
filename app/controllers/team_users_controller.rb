@@ -23,6 +23,15 @@ class TeamUsersController < ApplicationController
     end
   end
 
+  def leave_team
+    @team_user = TeamUser.find_by(team_id: params[:id], user_id: current_user.id)
+    authorize! :destroy, @team_user
+    @team_user.destroy
+    respond_to do |format|
+      format.json {render json: true }
+    end
+  end
+
   private
 
   def set_team_user

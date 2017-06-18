@@ -1,13 +1,16 @@
 <ul class="side-nav fixed side-nav-channel" id="side-bar-channel">
    <li>
       <div>
-         <span class="team_title"><%= @team.slug %></span>
-         <% if can? :destroy, @team %>
-         <a class="right team_icon remove_team" href="#">
-         <i class="material-icons" id="<%= @team.id %>">settings</i>
-         </a>
-         <% end %>
+        <span class="team_title"><%= @team.slug %></span>
+        <% if can? :destroy, @team %>
+          <a class="right team_icon remove_team" href="#">
+            <i class="material-icons" id="<%= @team.id %>">settings</i>
+          </a>
+        <% end %>
       </div>
+      <% if @team.user != current_user %>
+        <a class="red-text leave_team" href="#leave_team_modal" id="<%= @team.id %>"><i class="material-icons red-text">delete</i>Leave Team</a>
+      <% end %>
    </li>
    <li>
       <div class="divider"></div>
