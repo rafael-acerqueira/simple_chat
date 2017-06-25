@@ -28,8 +28,25 @@ class TeamUsersController < ApplicationController
     authorize! :destroy, @team_user
     @team_user.destroy
     respond_to do |format|
-      format.json {render json: true }
+      format.json {render json: true}
     end
+  end
+
+  def send_invite_team_mail
+    @user = User.find_by(email: params[:team_user][:email])
+    if !@user.present?
+      respond_to do |format|
+        format.json {render json: false, status: :unprocessable_entity }
+      end
+    else
+      @team = Team.find(params[:team_user][:team_id])
+      InviteMailer.invite(@user, @team).deliver_now
+    end
+  end
+
+  def invite_confirm
+    @user = User.find(params[:user_id])
+    @team = Team.find(params[:team_id])
   end
 
   private

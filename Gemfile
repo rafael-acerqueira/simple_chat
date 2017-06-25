@@ -40,6 +40,7 @@ gem 'cancancan'
 gem 'materialize-sass'
 gem 'material_icons'
 gem 'redis'
+gem 'mailgun-ruby', '~>1.1.6'
 
 group :test do
   gem "factory_girl_rails"
@@ -50,6 +51,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'rspec-rails', '~> 3.5'
+  gem 'dotenv-rails'
 end
 
 group :development do
