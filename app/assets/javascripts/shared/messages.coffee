@@ -31,6 +31,7 @@ window.open = (id, type) ->
           set_chat(data['user']['name'])
         else
           set_chat(data['slug'])
+          user_view_messages(id, $("#user_id").val())
 
         window.change_chat(id, type, $(".team_id").val())
 
@@ -44,6 +45,22 @@ window.open = (id, type) ->
     return false
 
 
+window.user_view_messages = (channel_id, user_id) ->
+  #alert "Channel: "+ channel_id + " e User: "+ user_id
+  $.ajax "/user_messages",
+      type: 'POST'
+      dataType: 'json',
+      data: {
+        user_message: {
+          channel_id: channel_id
+          user_id: user_id
+        }
+      }
+      success: (data, text, jqXHR) ->
+        $(".channel_#{channel_id}").find('.unread_messages').remove();
+      error: (jqXHR, textStatus, errorThrown) ->
+        Materialize.toast('Problem in view Message &nbsp;<b>:(</b>', 4000, 'red')
+  return false
 
 
 window.add = (slug, id, type) ->

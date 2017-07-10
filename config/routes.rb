@@ -10,5 +10,8 @@ Rails.application.routes.draw do
     delete 'leave_team', on: :member
     post 'send_invite_team_mail', on: :member
   end
+
+  resources :user_messages, only: [:create]
+
   devise_for :users, :controllers => { registrations: 'registrations' }
 end

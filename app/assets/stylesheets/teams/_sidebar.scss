@@ -38,6 +38,15 @@
   padding-left: 220px;
 }
 
+.unread_messages {
+  float: right;
+  color: red;
+  font-size: 12px;
+  font-weight: bolder;
+  margin-right: 10px;
+  text-align: right;
+}
+
 @media only screen and (max-width : 992px) {
   .team_content {
     padding-left: 0px;
