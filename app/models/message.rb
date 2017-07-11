@@ -6,4 +6,9 @@ class Message < ApplicationRecord
   validates_presence_of :body, :user
 
   after_create_commit {MessageBroadcastJob.perform_later self}
+  after_create_commit :view_message
+
+  def view_message
+    UserMessage.create(user: self.user, message: self)
+  end
 end

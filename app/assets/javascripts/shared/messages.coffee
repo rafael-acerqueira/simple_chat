@@ -46,7 +46,6 @@ window.open = (id, type) ->
 
 
 window.user_view_messages = (channel_id, user_id) ->
-  #alert "Channel: "+ channel_id + " e User: "+ user_id
   $.ajax "/user_messages",
       type: 'POST'
       dataType: 'json',
